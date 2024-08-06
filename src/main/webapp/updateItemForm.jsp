@@ -47,7 +47,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 800px;
-            margin: auto;
+            margin: 20px auto;
         }
         h1 {
             color: #333;
@@ -59,18 +59,24 @@
         form p {
             margin: 10px 0;
         }
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
         form input[type="text"], form textarea, form select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            box-sizing: border-box;
         }
         form textarea {
             resize: vertical;
             min-height: 100px;
         }
         form input[type="file"] {
-            padding: 0;
+            padding: 5px 0;
         }
         form button {
             background-color: #007bff;
@@ -81,6 +87,7 @@
             cursor: pointer;
             font-size: 16px;
             transition: background-color 0.3s;
+            margin-top: 10px;
         }
         form button:hover {
             background-color: #0056b3;
@@ -101,6 +108,47 @@
             width: 100%;
             bottom: 0;
         }
+        @media (max-width: 768px) {
+            header nav {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            header nav a {
+                margin: 5px 0;
+            }
+            .container {
+                width: 100%;
+                padding: 15px;
+                box-shadow: none;
+            }
+            form {
+                width: 100%;
+            }
+            form p {
+                margin: 5px 0;
+            }
+        }
+        @media (max-width: 480px) {
+            header {
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 24px;
+            }
+            header nav a {
+                font-size: 14px;
+            }
+            form label, form input[type="text"], form textarea, form select, form button {
+                font-size: 14px;
+            }
+            form button {
+                padding: 8px 16px;
+            }
+            .photo-preview img {
+                max-width: 80px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -113,35 +161,35 @@
             <a href="${pageContext.request.contextPath}/logout">Logout</a>
         </nav>
     </header>
-    
+
     <div class="container">
         <h1>Update Item</h1>
-        <form action="${pageContext.request.contextPath}/updateItem" method="post" enctype="multipart/form-data">
+        <form action="${pageContext.request.contextPath}/updateItemForm" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="${item.id}">
             <p>
-                <label for="name">Name:</label><br>
+                <label for="name">Name:</label>
                 <input type="text" id="name" name="name" value="${item.name}" required>
             </p>
             <p>
-                <label for="description">Description:</label><br>
+                <label for="description">Description:</label>
                 <textarea id="description" name="description" required>${item.description}</textarea>
             </p>
             <p>
-                <label for="category">Category:</label><br>
+                <label for="category">Category:</label>
                 <input type="text" id="category" name="category" value="${item.category}" required>
             </p>
             <p>
-                <label for="condition">Condition:</label><br>
+                <label for="condition">Condition:</label>
                 <input type="text" id="condition" name="condition" value="${item.condition}" required>
             </p>
             <p>
-                <label for="owner">Owner:</label><br>
+                <label for="owner">Owner:</label>
                 <input type="text" id="owner" name="owner" value="${item.owner}" required>
             </p>
             <p>
-                <label for="photo">Photo:</label><br>
-                <input type="file" id="photo" name="photo"><br>
-                <span>Current Photo:</span><br>
+                <label for="photo">Photo:</label>
+                <input type="file" id="photo" name="photo">
+                <span>Current Photo:</span>
                 <div class="photo-preview">
                     <img src="${pageContext.request.contextPath}/${item.photoUrl}" alt="Item Photo">
                 </div>
@@ -150,7 +198,7 @@
             <button type="submit">Update Item</button>
         </form>
     </div>
-    
+
     <footer>
         <p>&copy; 2024 Jackson's Exchange Agency. All rights reserved.</p>
     </footer>

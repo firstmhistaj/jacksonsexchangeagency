@@ -196,7 +196,7 @@
             <li><a href="${pageContext.request.contextPath}/browseListings">Browse Listings</a></li>
             <li><a href="${pageContext.request.contextPath}/add_item.jsp">Add New Item</a></li>
             <li><a href="${pageContext.request.contextPath}/contact.jsp">Contact Us</a></li>
-            <li><a href="${pageContext.request.contextPath}/predict">Prediction</a></li>
+            <li><a href="${pageContext.request.contextPath}/predict">Search</a></li>
         </ul>
     </nav>
     
